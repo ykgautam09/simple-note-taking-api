@@ -1,9 +1,9 @@
 import { Router } from "express";
-const router = Router()
+const router = Router();
+import * as controller from "./../controller/index.js"
 
-router.get(('/'), (req, res, _next) => {
-  res.json({ status: 200, message: "Server up and running...", data: null })
+router.get(('/'), controller.healthCheck)
 
-})
+router.post(('/notes'), controller.createNote)
 
 export default router;
