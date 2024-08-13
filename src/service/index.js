@@ -48,7 +48,7 @@ export const searchNoteByTitle = async (params) => {
 
 export const updateNoteById = async (id, note) => {
   try {
-    return await sql`UPDATE "note" SET ${sql(note, 'title', 'body')} WHERE "id" = ${id};`
+    return await sql`UPDATE "note" SET ${sql(note, 'title', 'body')}, updated_at = ${sql`now()`} WHERE "id" = ${id};`
   } catch (error) {
     if (error.statusName) {
       throw error;
