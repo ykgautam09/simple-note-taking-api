@@ -24,8 +24,19 @@ export const handleError = (err, _req, res) => {
   // log application error
   console.error(err);
   if (err.statusName) {
-    return generateResponse(res, err.httpStatus, err.statusName, err.message, err?.data || null)
+    return generateResponse(
+      res,
+      err.httpStatus,
+      err.statusName,
+      err.message,
+      err?.data || null
+    );
   } else {
-    return generateResponse(res, errCode.DEFAULT.HTTP_STATUS, errCode.DEFAULT.NAME, err?.message)
+    return generateResponse(
+      res,
+      errCode.DEFAULT.HTTP_STATUS,
+      errCode.DEFAULT.NAME,
+      err?.message
+    );
   }
-}
+};

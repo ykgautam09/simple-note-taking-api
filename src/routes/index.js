@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router = Router();
-import * as controller from "./../controller/index.js"
+import * as controller from "./../controller/index.js";
 
-router.get(('/'), controller.healthCheck)
+router.get("/", controller.healthCheck);
 
 /**
  * A Note
@@ -23,7 +23,7 @@ router.get(('/'), controller.healthCheck)
     "data": []
   }
 */
-router.post(('/notes'), controller.createNote)
+router.post("/notes", controller.createNote);
 
 /**
  * GET /notes/{id}
@@ -44,7 +44,7 @@ router.post(('/notes'), controller.createNote)
   ]
 }
 */
-router.get(('/notes/:id'), controller.fetchNoteById)
+router.get("/notes/:id", controller.fetchNoteById);
 
 /**
  * GET /notes/
@@ -67,7 +67,7 @@ router.get(('/notes/:id'), controller.fetchNoteById)
   ]
 }
 */
-router.get(('/notes/'), controller.searchNoteByTitle)
+router.get("/notes/", controller.searchNoteByTitle);
 
 /**
  * PUT /notes/{id}
@@ -83,6 +83,6 @@ router.get(('/notes/'), controller.searchNoteByTitle)
     "data": []
   }
 */
-router.put(('/notes/:id'), controller.updateNoteById)
+router.put("/notes/:id", controller.updateNoteById);
 
 export default router;

@@ -8,25 +8,41 @@ export const validStatus = {
   UNPROCESSABLE_ENTITY: 422,
   INTERNAL_SERVER_ERROR: 500,
   SERVICE_UNAVAILABLE: 503
-}
+};
 
 class Status {
-  constructor(name, status, message = '') {
-    this.NAME = name
-    this.HTTP_STATUS = status
-    this.MESSAGE = message
+  constructor(name, status, message = "") {
+    this.NAME = name;
+    this.HTTP_STATUS = status;
+    this.MESSAGE = message;
   }
 }
 
 // Custom Error templates
 export const errCode = {
-  DEFAULT: new Status("INTERNAL SERVER ERROR", validStatus.INTERNAL_SERVER_ERROR, "Something goes wrong"),
-  NOT_FOUND: new Status("NOT FOUND", validStatus.NOT_FOUND, "Resource doesn't exists"),
-  FAILED: new Status("FAILED", validStatus.BAD_REQUEST, "Failed to complete the request"),
+  DEFAULT: new Status(
+    "INTERNAL SERVER ERROR",
+    validStatus.INTERNAL_SERVER_ERROR,
+    "Something goes wrong"
+  ),
+  NOT_FOUND: new Status(
+    "NOT FOUND",
+    validStatus.NOT_FOUND,
+    "Resource doesn't exists"
+  ),
+  FAILED: new Status(
+    "FAILED",
+    validStatus.BAD_REQUEST,
+    "Failed to complete the request"
+  ),
   OK: new Status("SUCCESS", validStatus.OK, null),
   CREATED: new Status("CREATED", validStatus.CREATED, null),
-  VALIDATION_ERROR: new Status("VALIDATION FAILURE", validStatus.UNPROCESSABLE_ENTITY, "Request can not be processed"),
-}
+  VALIDATION_ERROR: new Status(
+    "VALIDATION FAILURE",
+    validStatus.UNPROCESSABLE_ENTITY,
+    "Request can not be processed"
+  )
+};
 
 /**
  * Express JSON Response generator
@@ -37,8 +53,16 @@ export const errCode = {
  * @param {String} data Response data (optional)
  * @returns Express json Response
  */
-export const generateResponse = (res, statusCode, status, message = null, data = null) => {
+export const generateResponse = (
+  res,
+  statusCode,
+  status,
+  message = null,
+  data = null
+) => {
   return res.status(statusCode).json({
-    status, message, data
-  })
-} 
+    status,
+    message,
+    data
+  });
+};

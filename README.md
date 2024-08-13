@@ -30,4 +30,4 @@ npm install
     ```
 
 ### Usages
-After running to server, navigate to `/api-docs` to start using REST endpoints
+After running to server, navigate to `/api-docs` to start using REST endpoints using swagger UI
