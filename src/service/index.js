@@ -14,3 +14,17 @@ export const createNote = async (note) => {
     }
   }
 }
+
+export const fetchNoteById = async (id) => {
+  try {
+    const columns = ['id', 'title', 'body']
+    return await sql`SELECT  ${sql(columns, 'id', 'title', 'body')} FROM "note" WHERE "id" = ${id}`
+  } catch (error) {
+    if (error.statusName) {
+      throw error;
+    }
+    else {
+      throw new AppError(errCode.FAILED.HTTP_STATUS, errCode.FAILED.NAME, errCode.FAILED.MESSAGE)
+    }
+  }
+}

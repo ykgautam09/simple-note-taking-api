@@ -6,4 +6,6 @@ router.get(('/'), controller.healthCheck)
 
 router.post(('/notes'), controller.createNote)
 
+router.get(('/notes/:id'), controller.fetchNoteById)
+
 export default router;
