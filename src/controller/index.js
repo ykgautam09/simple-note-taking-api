@@ -7,7 +7,6 @@ export const healthCheck = (_req, res, next) => {
   try {
     return generateResponse(res, errCode.OK.HTTP_STATUS, errCode.OK.NAME, "Server up and running...")
   } catch (error) {
-    console.error(error)
     next(error)
   }
 }
@@ -24,7 +23,6 @@ export const createNote = async (req, res, next) => {
 
     return generateResponse(res, errCode.CREATED.HTTP_STATUS, errCode.CREATED.NAME, null, response)
   } catch (error) {
-    console.error(error)
     next(error)
   }
 }
@@ -41,7 +39,6 @@ export const fetchNoteById = async (req, res, next) => {
 
     return generateResponse(res, errCode.OK.HTTP_STATUS, errCode.OK.NAME, null, response)
   } catch (error) {
-    console.error(error)
     next(error)
   }
 }
@@ -58,7 +55,6 @@ export const searchNoteByTitle = async (req, res, next) => {
 
     return generateResponse(res, errCode.OK.HTTP_STATUS, errCode.OK.NAME, null, response)
   } catch (error) {
-    console.error(error)
     next(error)
   }
 }
@@ -77,7 +73,6 @@ export const updateNoteById = async (req, res, next) => {
 
     return generateResponse(res, errCode.OK.HTTP_STATUS, errCode.OK.NAME, null, response)
   } catch (error) {
-    console.error(error)
     next(error)
   }
 }
