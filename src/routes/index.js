@@ -8,4 +8,6 @@ router.post(('/notes'), controller.createNote)
 
 router.get(('/notes/:id'), controller.fetchNoteById)
 
+router.get(('/notes/'), controller.searchNoteByTitle)
+
 export default router;
