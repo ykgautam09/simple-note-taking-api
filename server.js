@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import { configDotenv } from 'dotenv';
+import { join} from "path"
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 import indexRoute from './src/routes/index.js';
 import { AppError, handleError } from './src/util/error.js';
 import { errCode, generateResponse, validStatus } from './src/util/response.js';
@@ -17,6 +19,39 @@ const app = express();
 app.use(bodyParser.json({ limit: "20mb" }));
 app.use(logger('dev'));
 
+//swagger doc configuration
+
+const options = {
+  info: {
+    version: '1.0.0',
+    title: 'Note Taking API',
+    license: {
+      name: 'MIT',
+    },
+  },
+  // security: false,
+  // Base directory which we use to locate your JSDOC files
+  baseDir: '.',
+  // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
+  filesPattern: './src/routes/**/*.js',
+  // URL where SwaggerUI will be rendered
+  swaggerUIPath: '/api-docs',
+  // Expose OpenAPI UI
+  exposeSwaggerUI: true,
+  // Expose Open API JSON Docs documentation in `apiDocsPath` path.
+  exposeApiDocs: false,
+  // Open API JSON Docs endpoint.
+  apiDocsPath: '/docs',
+  // Set non-required fields as nullable by default
+  notRequiredAsNullable: false,
+  // You can customize your UI options.
+  // you can extend swagger-ui-express config. You can checkout an example of this
+  // in the `example/configuration/swaggerOptions.js`
+  swaggerUiOptions: {},
+  // multiple option in case you want more that one instance
+  multiple: false,
+};
+expressJSDocSwagger(app)(options);
 
 // Routes
 app.use('/', indexRoute);
