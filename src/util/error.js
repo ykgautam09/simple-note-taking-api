@@ -5,10 +5,10 @@ import { generateResponse, errCode } from "./response.js";
  */
 export class AppError extends Error {
   constructor(errorCode, statusMessage, data = null) {
-    super(statusMessage);
+    super(errorCode);
     this.httpStatus = errorCode.HTTP_STATUS;
     this.statusName = errorCode.NAME;
-    this.message = errorCode.MESSAGE;
+    this.message = statusMessage;
     this.data = data;
   }
 }

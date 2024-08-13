@@ -10,4 +10,6 @@ router.get(('/notes/:id'), controller.fetchNoteById)
 
 router.get(('/notes/'), controller.searchNoteByTitle)
 
+router.put(('/notes/:id'), controller.updateNoteById)
+
 export default router;

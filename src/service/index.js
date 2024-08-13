@@ -10,7 +10,7 @@ export const createNote = async (note) => {
       throw error;
     }
     else {
-      throw new AppError(errCode.DEFAULT.HTTP_STATUS, errCode.DEFAULT.NAME, errCode.DEFAULT.MESSAGE)
+      throw new AppError(errCode.DEFAULT, errCode.DEFAULT.MESSAGE)
     }
   }
 }
@@ -24,7 +24,7 @@ export const fetchNoteById = async (id) => {
       throw error;
     }
     else {
-      throw new AppError(errCode.DEFAULT.HTTP_STATUS, errCode.DEFAULT.NAME, errCode.DEFAULT.MESSAGE)
+      throw new AppError(errCode.DEFAULT, errCode.DEFAULT.MESSAGE)
     }
   }
 }
@@ -36,13 +36,25 @@ export const searchNoteByTitle = async (params) => {
     const columns = ['id', 'title', 'body']
     return await sql`SELECT ${sql(columns)} FROM "note" WHERE "title" like ${`%${title}%`} ORDER BY "id" limit ${limit} OFFSET ${page * limit};`
   } catch (error) {
-    console.log({ error });
-
     if (error.statusName) {
       throw error;
     }
     else {
-      throw new AppError(errCode.DEFAULT.HTTP_STATUS, errCode.DEFAULT.NAME, errCode.DEFAULT.MESSAGE)
+      throw new AppError(errCode.DEFAULT, errCode.DEFAULT.MESSAGE)
+    }
+  }
+}
+
+
+export const updateNoteById = async (id, note) => {
+  try {
+    return await sql`UPDATE "note" SET ${sql(note, 'title', 'body')} WHERE "id" = ${id};`
+  } catch (error) {
+    if (error.statusName) {
+      throw error;
+    }
+    else {
+      throw new AppError(errCode.DEFAULT, errCode.DEFAULT.MESSAGE)
     }
   }
 }
